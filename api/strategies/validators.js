@@ -44,7 +44,10 @@ const registerSchema = z
       .transform((value) => (value === '' ? null : value))
       .optional()
       .nullable(),
-    email: z.string().email(),
+    email: z.string().email()
+      .refine((email) => email.endsWith('@17lianqin.cn'), {
+        message: 'Email must be from the domain 17lianqin.cn',
+      }),
     password: z
       .string()
       .min(8)
