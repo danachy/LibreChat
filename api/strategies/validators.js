@@ -1,16 +1,5 @@
 const { z } = require('zod');
 
-function errorsToString(errors) {
-  return errors
-    .map((error) => {
-      let field = error.path.join('.');
-      let message = error.message;
-
-      return `${field}: ${message}`;
-    })
-    .join(' ');
-}
-
 const allowedCharactersRegex = /^[a-zA-Z0-9_.@#$%&*()\p{Script=Latin}\p{Script=Common}]+$/u;
 const injectionPatternsRegex = /('|--|\$ne|\$gt|\$lt|\$or|\{|\}|\*|;|<|>|\/|=)/i;
 
@@ -75,5 +64,4 @@ const registerSchema = z
 module.exports = {
   loginSchema,
   registerSchema,
-  errorsToString,
 };
